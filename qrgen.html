@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+<a href-lang='image/svg+xml' id="downlnk" download="QR.svg">
+	<div id="svg" style=" height: auto;max-width: 500px"></div>
+</a>
+<script type="text/javascript" src="http://pastebin.com/raw/QBYapqTF"></script>
+<div>
+	<input type="text" id="content" onchange="gen()">
+</div>
+<script>
+	function gen() {
+		var input = document.getElementById("content").value
+		var qrcode = new QRCode(input);
+		var svg = qrcode.svg();
+		document.getElementById("svg").innerHTML = svg;
+		var orig  = document.getElementsByTagName("svg")[0],
+    		xml  = new XMLSerializer().serializeToString(orig),
+    		data = "data:image/svg+xml;base64," + btoa(xml)
+		document.getElementById("downlnk").href = data
+	}
+</script>
+</body>
+</html>
